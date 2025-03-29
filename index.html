@@ -13,6 +13,7 @@
   </head>
   <body>
     <h1 class="">Socket chat app</h1>
+    <h1 id="mess"></h1>
     <div class="container">
       <div class="row d-flex justify-content-around">
         <div class="col-12 col-md-6 col-lg-6">
@@ -38,20 +39,26 @@
     <script>
       const socket = io();
       const messageBox = document.getElementById("message");
-      const sendMessage = () => {
-        const message = messageBox.value;
+      const mess = document.getElementById("mess");
+      // const sendMessage = () => {
+      //   const message = messageBox.value;
 
-        if (message) {
-          socket.emit("chat", message);
-        }
+      //   if (message) {
+      //     socket.emit("chat", message);
+      //   }
 
-        messageBox.value = "";
-      };
-      socket.on("chat_transfer", (mes) => {
-        const messageList = document.getElementById("messageList");
-        const li = document.createElement("li");
-        li.textContent = mes;
-        messageList.appendChild(li);
+      //   messageBox.value = "";
+      // };
+      // socket.on("chat_transfer", (mes) => {
+      //   const messageList = document.getElementById("messageList");
+      //   const li = document.createElement("li");
+      //   li.textContent = mes;
+      //   messageList.appendChild(li);
+      // });
+
+      // catch socket room
+      socket.on("cooking", (mes) => {
+        mess.innerHTML = mes;
       });
     </script>
   </body>
